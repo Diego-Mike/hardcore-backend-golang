@@ -8,15 +8,21 @@ dropdb:
 	docker exec -it postgres12 dropdb simple_bank
 
 migrateup:
-	migrate -path db/migration -database "postgresql://root:diegoelmono@localhost:5432/simple_bank?sslmode=disable" -verbose up 
+	migrate -path db/migration -database "postgresql://root:diegoelmono@localhost:5432/simple_bank?sslmode=disable" -verbose up 1
 
 migratedown:
-	migrate -path db/migration -database "postgresql://root:diegoelmono@localhost:5432/simple_bank?sslmode=disable" -verbose down
+	migrate -path db/migration -database "postgresql://root:diegoelmono@localhost:5432/simple_bank?sslmode=disable" -verbose down 1
 
 sqlc:
-	sqlc generate 
+	sqlc generate
 
 test:
 	go test -v -cover ./...
 
-.PHONY: createdb dropdb migrateup migratedown sqlc test
+server: 
+	go run main.go
+
+mock:
+	mockgen -package mockdb -destination db/mock/store.go github.com/Diego-Mike/hardcore-backend-golang/db/sqlc Store
+
+.PHONY: createdb dropdb migrateup migratedown sqlc test server mock
