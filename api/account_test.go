@@ -1,13 +1,11 @@
 package api
 
-/*
-
 import (
 	"bytes"
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"io"
+	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -17,6 +15,7 @@ import (
 	db "github.com/Diego-Mike/hardcore-backend-golang/db/sqlc"
 	"github.com/Diego-Mike/hardcore-backend-golang/token"
 	"github.com/Diego-Mike/hardcore-backend-golang/util"
+	"github.com/gin-gonic/gin"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 )
@@ -449,4 +448,3 @@ func requireBodyMatchAccounts(t *testing.T, body *bytes.Buffer, accounts []db.Ac
 	require.NoError(t, err)
 	require.Equal(t, accounts, gotAccounts)
 }
-*/
